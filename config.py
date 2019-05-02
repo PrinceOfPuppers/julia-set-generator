@@ -8,7 +8,7 @@ class Config:
         self.seedPoint=( 0.285 + 0.01j)
         #iterations and resolution are best considered togeather ie 5000x5000 needs 
         #an iteration number greather than 30
-        self.iterations=5000
+        self.iterations=1000
         self.threshold=4
 
         self.enableFullScreen=True

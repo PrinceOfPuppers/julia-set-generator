@@ -28,10 +28,10 @@ def calculateImageArrayRow(yIndex,imageRow,state):
         z=state.xVals[xIndex]+state.yVals[yIndex]*1j
         iterationsTillDivergence=didConvergeAtZWithRate(z,c,iterations,threshold)
 
-        #the cube root gives better dynamic range in the color map
+        #the square root gives better dynamic range in the color map
         #it is needed here due to the high number of iterations
         #required by the julia sets
-        imageRow[xIndex]=(iterationsTillDivergence/iterations)**(1/3)
+        imageRow[xIndex]=(iterationsTillDivergence/iterations)**(1/2)
     return(imageRow)
 
 def populateImageArray(imageArray,config,state):
@@ -58,10 +58,10 @@ def populateImageArray(imageArray,config,state):
             for yIndex in range(0,resolution[1]):
                 z=state.xVals[xIndex]+(state.yVals[yIndex])*1j
                 
-                #the cube root gives better dynamic range in the color map
+                #the square root gives better dynamic range in the color map
                 #it is needed here due to the high number of iterations
                 #required by the julia sets
-                imageRow[xIndex]=(iterationsTillDivergence/iterations)**(1/3)
+                imageRow[xIndex]=(iterationsTillDivergence/iterations)**(1/2)
     return(imageArray)
 
 def createColorJulia(config,state):
@@ -72,8 +72,8 @@ def createColorJulia(config,state):
     fig=plt.figure(figsize=(resolution[0]/166 , resolution[1]/166))
     x1,x2=state.xBounds[0],state.xBounds[1]
     y1,y2=state.yBounds[0],state.yBounds[1]
-
-    plt.imshow(imageArray,origin='lower',cmap='hot', aspect='equal', interpolation='nearest',extent=[x1,x2,y1,y2])
+    norm=mpl.colors.Normalize(vmin=0,vmax=1)
+    plt.imshow(imageArray,origin='lower',cmap='hot', aspect='equal', interpolation='nearest',extent=[x1,x2,y1,y2],norm=norm)
     plt.xlabel("Re")
     plt.ylabel("Im")
     manager = plt.get_current_fig_manager()

@@ -6,6 +6,7 @@ class Config:
 
         #self.seedPoint=(-0.8 + 0.156j)
         self.seedPoint=( 0.285 + 0.01j)
+        #self.seedPoint=1-1.61803398875
         #iterations and resolution are best considered togeather ie 5000x5000 needs 
         #an iteration number greather than 30
         self.iterations=1000
